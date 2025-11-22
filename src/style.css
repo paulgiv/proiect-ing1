@@ -2,10 +2,10 @@
 :root {
   --primary-color: #6a32e3;
   --primary-dark: #4b23a0;
-  --secondary-color: #f3f0ff;
+  --secondary-color: #f3f0ff; /* Light Purple */
   --text-color: #2d2d42;
   --bg-color: #fcfcfc;
-  --nav-height: 70px; /* Height of the new top bar */
+  --nav-height: 80px; /* Slightly taller to fit the buttons nicely */
 }
 
 *, *::before, *::after {
@@ -14,13 +14,13 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--nav-height); /* Prevents header from covering titles */
+  scroll-padding-top: var(--nav-height);
 }
 
 body {
   font-family: 'Manrope', sans-serif;
   margin: 0;
-  padding-top: var(--nav-height); /* Push content down so nav doesn't cover it */
+  padding-top: var(--nav-height);
   background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.8;
@@ -33,9 +33,9 @@ body {
   left: 0;
   width: 100%;
   height: var(--nav-height);
-  background: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
-  backdrop-filter: blur(10px); /* Glass effect */
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -45,28 +45,37 @@ body {
 
 .nav-container {
   display: flex;
-  gap: 15px;
-  overflow-x: auto; /* Allows scrolling on very small phones */
+  gap: 10px;
+  overflow-x: auto;
   white-space: nowrap;
-  padding-bottom: 5px; /* Hide scrollbar for cleanliness */
+  padding: 5px 5px 10px 5px; /* Padding for scrollbar space */
+  align-items: center;
 }
 
+/* --- NEW BUTTON STYLE FOR LINKS --- */
 .nav-link {
   text-decoration: none;
-  color: var(--text-color);
   font-weight: 700;
   font-size: 0.9rem;
-  padding: 8px 16px;
-  border-radius: 20px;
+  padding: 10px 20px;
+  border-radius: 50px;
   transition: all 0.3s ease;
+  
+  /* DEFAULT STATE: Light Purple Background */
+  background-color: var(--secondary-color); 
+  color: var(--primary-dark);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .nav-link:hover {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+  /* HOVER STATE: Real Purple Background */
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(106, 50, 227, 0.3);
 }
 
-/* --- Header (Modified to fit under nav) --- */
+/* --- Header --- */
 header {
   background: linear-gradient(135deg, #1a0b36, var(--primary-color));
   color: white;
@@ -112,8 +121,8 @@ header h1 span {
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   z-index: 999;
   transition: all 0.3s ease;
-  opacity: 0; /* Hidden by default */
-  pointer-events: none; /* Not clickable when hidden */
+  opacity: 0;
+  pointer-events: none;
   transform: translateY(20px);
 }
 
@@ -128,7 +137,7 @@ header h1 span {
   transform: translateY(-5px);
 }
 
-/* --- Main Content Styles --- */
+/* --- Main Content --- */
 main {
   max-width: 1300px;
   margin: 0 auto;
@@ -244,7 +253,7 @@ p { margin-bottom: 1.5rem; text-align: justify; }
 }
 .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* --- CTA & Footer --- */
+/* --- CTA Button --- */
 .btn-primary {
     background-color: var(--primary-color);
     color: white;
@@ -257,20 +266,28 @@ p { margin-bottom: 1.5rem; text-align: justify; }
 }
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(106,50,227,0.2); }
 
+/* --- Footer (Fixed Centering) --- */
 footer {
   background: #2d2d42;
   color: #aaa;
-  padding: 2rem;
-  text-align: center;
+  padding: 2rem 1rem;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
-footer p { margin: 0; text-align: center; width: 100%; }
+
+footer p {
+  margin: 0;
+  text-align: center; 
+  width: 100%;
+  font-size: 0.9rem;
+}
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
   section { padding: 1.5rem; }
   header h1 { font-size: 2rem; }
-  .nav-container { justify-content: flex-start; } /* Allows scrolling sideways on phone */
+  .nav-container { justify-content: flex-start; } 
 }
