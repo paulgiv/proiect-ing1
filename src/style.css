@@ -2,12 +2,11 @@
 :root {
   --primary-color: #6a32e3;
   --primary-dark: #4b23a0;
-  --secondary-color: #f0ebff;
-  --text-color: #1e1e3c;
-  --bg-color: #f8f9fa;
+  --secondary-color: #f3f0ff;
+  --text-color: #2d2d42;
+  --bg-color: #fcfcfc;
   --card-bg: #ffffff;
-  --shadow-color: rgba(106, 50, 227, 0.1);
-  --accent-color: #ff0055;
+  --shadow-color: rgba(106, 50, 227, 0.08);
 }
 
 *, *::before, *::after {
@@ -24,54 +23,43 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.8;
+  font-size: 1.05rem;
 }
 
 /* --- Header --- */
 header {
-  background: linear-gradient(135deg, #2c0b63, var(--primary-color));
+  background: linear-gradient(135deg, #1a0b36, var(--primary-color));
   color: white;
   text-align: center;
-  padding: 6rem 1.5rem 4rem;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
-  margin-bottom: 3rem;
+  padding: 6rem 1rem 4rem;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  margin-bottom: 4rem;
 }
 
 header h1 {
-  font-size: 2.8rem;
+  font-size: 3rem;
   font-weight: 800;
   margin: 1rem 0;
-  line-height: 1.2;
 }
 
 header h1 span {
-  color: #d4c2ff;
+  color: #cbb2ff;
 }
 
 .subtitle {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   opacity: 0.9;
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto 2rem;
 }
 
-.tag {
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 0.4rem 1rem;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* --- Navigation (Table of Contents) --- */
+/* --- Navigation --- */
 .nav-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 3rem;
+  gap: 12px;
   padding: 0 1rem;
 }
 
@@ -79,71 +67,90 @@ header h1 span {
   text-decoration: none;
   color: var(--primary-color);
   background: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  box-shadow: 0 4px 6px var(--shadow-color);
-  transition: all 0.3s ease;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
 }
 
 .nav-link:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  background: var(--secondary-color);
 }
 
-/* --- Main Content --- */
+/* --- Main Content (WIDER) --- */
 main {
-  max-width: 1000px;
+  /* Changed from 960px to 1300px for wider content */
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 0 1.5rem 4rem;
+  padding: 0 2rem 5rem;
 }
 
 section {
   background: white;
-  padding: 3rem;
-  margin-bottom: 3rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
-  border: 1px solid rgba(255,255,255,0.5);
+  padding: 4rem;
+  margin-bottom: 4rem;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.06);
+  border: 1px solid #f0f0f0;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2.4rem;
   color: var(--primary-dark);
-  border-bottom: 2px solid var(--secondary-color);
+  border-bottom: 3px solid var(--secondary-color);
   padding-bottom: 1rem;
   margin-top: 0;
   margin-bottom: 2rem;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: var(--primary-color);
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 p {
   margin-bottom: 1.5rem;
-  color: #4a4a6a;
+  text-align: justify;
 }
 
-/* --- Tables (Budgets) --- */
+/* --- Gallery Grid --- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.gallery img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.02);
+}
+
+/* --- Tables --- */
 .budget-table {
   width: 100%;
   border-collapse: collapse;
   margin: 2rem 0;
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  font-size: 1rem;
+  background: #fff;
+  border: 1px solid #eee;
 }
 
-.budget-table th, 
-.budget-table td {
-  padding: 15px;
+.budget-table th, .budget-table td {
+  padding: 18px;
   text-align: left;
   border-bottom: 1px solid #eee;
 }
@@ -151,62 +158,47 @@ p {
 .budget-table th {
   background-color: var(--primary-color);
   color: white;
-  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
 }
 
 .budget-table tr:last-child td {
-  border-bottom: none;
-  font-weight: bold;
+  font-weight: 800;
   background-color: var(--secondary-color);
   color: var(--primary-dark);
+  font-size: 1.1rem;
 }
 
 /* --- Interview Style --- */
 .interview-block {
-  background-color: #faf8ff;
-  padding: 1.5rem;
-  border-left: 4px solid var(--primary-color);
+  background-color: #faf9fc;
+  padding: 2rem;
+  border-left: 5px solid var(--primary-color);
   margin-bottom: 2rem;
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 12px 12px 0;
 }
 
 .question {
+  display: block;
   font-weight: 800;
   color: var(--primary-dark);
-  margin-bottom: 0.5rem;
-  display: block;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
 }
 
 .answer {
-  color: #333;
+  display: block;
+  color: #444;
   font-style: italic;
+  font-size: 1.05rem;
 }
 
-/* --- Lists --- */
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-ul li {
-  position: relative;
-  padding-left: 25px;
-  margin-bottom: 10px;
-}
-
-ul li::before {
-  content: '✔';
-  position: absolute;
-  left: 0;
-  color: var(--primary-color);
-  font-weight: bold;
-}
-
-/* --- Animations --- */
+/* --- Scroll Animation --- */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .scroll-reveal.visible {
@@ -218,13 +210,12 @@ ul li::before {
 footer {
   text-align: center;
   padding: 3rem;
-  color: #888;
-  font-size: 0.9rem;
+  background: #2d2d42;
+  color: #aaa;
 }
 
-/* --- Responsive --- */
 @media (max-width: 768px) {
-  header h1 { font-size: 2rem; }
   section { padding: 1.5rem; }
-  .budget-table { display: block; overflow-x: auto; }
+  header h1 { font-size: 2rem; }
+  .gallery { grid-template-columns: 1fr; }
 }
