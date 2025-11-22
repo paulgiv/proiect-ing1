@@ -206,21 +206,25 @@ p {
   transform: translateY(0);
 }
 
-/* --- Footer (Updated for perfect centering) --- */
+/* --- Footer (Fixed Centering) --- */
 footer {
+  background: #2d2d42;
+  color: #aaa;
+  padding: 2rem 1rem;
+  width: 100%;
+  /* Force centering using multiple methods */
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 3rem;
-  background: #2d2d42;
-  color: #aaa;
-  width: 100%;
 }
 
 footer p {
   margin: 0;
+  /* Ensure the text inside the paragraph is also centered */
+  text-align: center; 
   width: 100%;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
