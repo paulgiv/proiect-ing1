@@ -206,12 +206,21 @@ p {
   transform: translateY(0);
 }
 
-/* --- Footer --- */
+/* --- Footer (Updated for perfect centering) --- */
 footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   padding: 3rem;
   background: #2d2d42;
   color: #aaa;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
