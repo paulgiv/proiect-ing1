@@ -113,28 +113,32 @@ header h1 span {
 }
 
 /* --- THE FADING BACKGROUND LOGO --- */
+/* --- THE FADING BACKGROUND LOGO (FIXED BLENDING) --- */
 .bg-logo {
   position: absolute;
-  top: 50%;
+  top: 0;
   right: 0;
-  transform: translateY(-50%); /* Centers it vertically */
-  height: 80%; /* Adjusts how big the logo is */
-  width: 50%;  /* Takes up the right half of the header */
-  z-index: 1; /* Places it BEHIND the text */
-  pointer-events: none; /* Ensures you can't click it by mistake */
-  opacity: 0.3; /* Subtle transparency */
+  height: 100%; /* Cover the full height of the header */
+  width: 60%;   /* Cover the right side */
+  z-index: 1;
+  pointer-events: none;
   
-  /* The Magic: Fades the image from Right (Visible) to Left (Transparent) */
-  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1), transparent);
-  mask-image: linear-gradient(to left, rgba(0,0,0,1), transparent);
+  /* The Magic Fixes: */
+  opacity: 0.4; /* Adjust transparency */
+  mix-blend-mode: soft-light; /* BLENDS the image into the purple, removing the box look */
+  
+  /* Mask: Fades from solid on the right to transparent on the left */
+  -webkit-mask-image: linear-gradient(to left, black 10%, transparent 100%);
+  mask-image: linear-gradient(to left, black 10%, transparent 100%);
 }
 
 .bg-logo img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: right center; /* Keeps the logo anchored to the right */
-  filter: grayscale(100%) brightness(200%); /* Optional: Makes it white/monochrome to blend better */
+  object-fit: cover; /* Ensures it fills the space */
+  object-position: right center;
+  /* Turns the blue logo into a high-contrast monochrome that blends perfectly */
+  filter: grayscale(100%) contrast(120%); 
 }
 
 /* Responsive adjustments */
