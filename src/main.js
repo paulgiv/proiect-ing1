@@ -1,5 +1,4 @@
 // --- Scroll Reveal Animation Logic ---
-
 const revealElements = document.querySelectorAll('.scroll-reveal');
 
 const revealOnScroll = () => {
@@ -7,17 +6,23 @@ const revealOnScroll = () => {
 
   revealElements.forEach(element => {
     const elementTop = element.getBoundingClientRect().top;
-
     if (elementTop < triggerBottom) {
       element.classList.add('visible');
-    } else {
-      // Optional: remove class to re-animate on scroll up
-      // element.classList.remove('visible');
     }
   });
 };
 
 window.addEventListener('scroll', revealOnScroll);
-
-// Initial check in case elements are already in view on page load
+// Initial check
 revealOnScroll();
+
+// --- Back to Top Button Logic ---
+const topBtn = document.querySelector('.btn-top');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    topBtn.classList.add('show');
+  } else {
+    topBtn.classList.remove('show');
+  }
+});

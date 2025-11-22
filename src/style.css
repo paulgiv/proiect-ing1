@@ -5,8 +5,7 @@
   --secondary-color: #f3f0ff;
   --text-color: #2d2d42;
   --bg-color: #fcfcfc;
-  --card-bg: #ffffff;
-  --shadow-color: rgba(106, 50, 227, 0.08);
+  --nav-height: 70px; /* Height of the new top bar */
 }
 
 *, *::before, *::after {
@@ -15,23 +14,64 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height); /* Prevents header from covering titles */
 }
 
 body {
   font-family: 'Manrope', sans-serif;
   margin: 0;
+  padding-top: var(--nav-height); /* Push content down so nav doesn't cover it */
   background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.8;
-  font-size: 1.05rem;
 }
 
-/* --- Header --- */
+/* --- STICKY NAVIGATION BAR --- */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Glass effect */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.nav-container {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto; /* Allows scrolling on very small phones */
+  white-space: nowrap;
+  padding-bottom: 5px; /* Hide scrollbar for cleanliness */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+/* --- Header (Modified to fit under nav) --- */
 header {
   background: linear-gradient(135deg, #1a0b36, var(--primary-color));
   color: white;
   text-align: center;
-  padding: 6rem 1rem 4rem;
+  padding: 4rem 1rem;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   margin-bottom: 4rem;
@@ -51,38 +91,45 @@ header h1 span {
   font-size: 1.3rem;
   opacity: 0.9;
   max-width: 800px;
-  margin: 0 auto 2rem;
+  margin: 0 auto;
 }
 
-/* --- Navigation --- */
-.nav-container {
+/* --- FLOATING BACK TO TOP BUTTON --- */
+.btn-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--primary-color);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   display: flex;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 0 1rem;
-}
-
-.nav-link {
   text-decoration: none;
-  color: var(--primary-color);
-  background: white;
-  padding: 10px 20px;
-  border-radius: 30px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: all 0.3s ease;
+  opacity: 0; /* Hidden by default */
+  pointer-events: none; /* Not clickable when hidden */
+  transform: translateY(20px);
 }
 
-.nav-link:hover {
-  transform: translateY(-3px);
-  background: var(--secondary-color);
+.btn-top.show {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
 }
 
-/* --- Main Content (WIDER) --- */
+.btn-top:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-5px);
+}
+
+/* --- Main Content Styles --- */
 main {
-  /* Changed from 960px to 1300px for wider content */
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 2rem 5rem;
@@ -113,10 +160,7 @@ h3 {
   margin-bottom: 1.5rem;
 }
 
-p {
-  margin-bottom: 1.5rem;
-  text-align: justify;
-}
+p { margin-bottom: 1.5rem; text-align: justify; }
 
 /* --- Gallery Grid --- */
 .gallery {
@@ -135,9 +179,7 @@ p {
   transition: transform 0.3s;
 }
 
-.gallery img:hover {
-  transform: scale(1.02);
-}
+.gallery img:hover { transform: scale(1.02); }
 
 /* --- Tables --- */
 .budget-table {
@@ -194,61 +236,41 @@ p {
   font-size: 1.05rem;
 }
 
-/* --- Scroll Animation --- */
+/* --- Animations --- */
 .scroll-reveal {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
+.scroll-reveal.visible { opacity: 1; transform: translateY(0); }
 
-.scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* --- CTA & Footer --- */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    transition: transform 0.2s;
 }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(106,50,227,0.2); }
 
-/* --- Footer (Fixed Centering) --- */
 footer {
   background: #2d2d42;
   color: #aaa;
-  padding: 2rem 1rem;
-  width: 100%;
-  /* Force centering using multiple methods */
+  padding: 2rem;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
+footer p { margin: 0; text-align: center; width: 100%; }
 
-footer p {
-  margin: 0;
-  /* Ensure the text inside the paragraph is also centered */
-  text-align: center; 
-  width: 100%;
-  font-size: 0.9rem;
-}
-
+/* --- Responsive --- */
 @media (max-width: 768px) {
   section { padding: 1.5rem; }
   header h1 { font-size: 2rem; }
-  .gallery { grid-template-columns: 1fr; }
-}
-
-/* --- Back to Top Button --- */
-.btn-top {
-  display: inline-block;
-  margin-bottom: 1.5rem;
-  background-color: var(--primary-color);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 700;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-}
-
-.btn-top:hover {
-  background-color: var(--primary-dark);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  .nav-container { justify-content: flex-start; } /* Allows scrolling sideways on phone */
 }
