@@ -383,3 +383,62 @@ footer p {
     height: 400px; /* Slightly smaller on phones but still tall */
   }
 }
+
+/* --- Final / Epilog Section --- */
+.closing-section {
+  background: #fff;
+  padding: 4rem 2rem;
+  margin-top: 4rem;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+
+.closing-text {
+  font-size: 1.2rem;
+  color: #444;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  font-style: italic;
+  line-height: 1.9;
+}
+
+.team-card {
+  background: linear-gradient(135deg, #fdfbfd, #f4f0ff);
+  border: 1px solid #eaddff;
+  padding: 3rem;
+  border-radius: 20px;
+  max-width: 700px;
+  margin: 3rem auto 0;
+  box-shadow: 0 10px 30px rgba(106, 50, 227, 0.08);
+}
+
+.team-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.team-members {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 1rem;
+}
+
+.coordinator {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.final-thanks {
+  font-size: 0.9rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2rem;
+}
