@@ -369,3 +369,17 @@ footer p {
   line-height: 1.8;
   text-align: justify;
 }
+
+/* --- Fix for Vertical/Portrait Photos --- */
+.gallery.portrait img {
+  height: 600px; /* Makes the image area much taller */
+  object-fit: contain; /* Forces the whole image to show without cropping */
+  background-color: rgba(0,0,0,0.03); /* Subtle background for the empty space */
+}
+
+/* Adjust for mobile */
+@media (max-width: 768px) {
+  .gallery.portrait img {
+    height: 400px; /* Slightly smaller on phones but still tall */
+  }
+}
